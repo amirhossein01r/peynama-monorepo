@@ -1,0 +1,6 @@
+[submodule "peynama"]
+	path = peynama
+	url = https://github.com/amirhossein01r/peynama.git
+[submodule "peynama-ui"]
+	path = peynama-ui
+	url = https://github.com/amirhossein01r/peynama-ui.git
