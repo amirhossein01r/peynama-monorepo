@@ -222,3 +222,30 @@ pnpm dev
 ```
 
 سپس فرانت‌اند روی `http://localhost:5173` و API روی `http://localhost:8000` در دسترس است.
+
+---
+## ۹. اجرای سریع با بکاپ و Images آماده (Quick Test Setup)
+
+اگر فایل بکاپ دیتابیس (`db-backup.dump`) و پوشهٔ `images/` از قبل به‌صورت دستی داخل مونوریپو قرار داده شده باشند:
+
+```
+peynama-monorepo/
+├── db-backup.dump  # فایل dump دیتابیس
+├── images/          # نسخهٔ آمادهٔ media
+├── peynama/          # بک‌اند
+└── peynama-ui/       # فرانت‌اند
+```
+
+برای اجرای سریع، کافیست دیتابیس را از بکاپ restore کنید و پوشهٔ images را داخل `peynama` بگذارید:
+
+```bash
+cd peynama
+docker compose up -d
+
+# restore بکاپ
+PGPASSWORD=PASSWORD pg_restore -h localhost -p 5433 -U postgres -d peynama_db \
+  --clean --if-exists ../db-backup.dump
+
+# قرار دادن پوشهٔ images
+cp -r ../images images
+```
